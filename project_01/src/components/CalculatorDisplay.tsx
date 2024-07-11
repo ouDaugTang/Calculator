@@ -1,10 +1,14 @@
 interface Props {
     value: string;
-    shadow: string;
+    subValue: string;
+    
 }
-export const CalculatorDisplay = ({ value, shadow }: Props) => {
+export const CalculatorDisplay = ({ value, subValue }: Props) => {
     return (
-        <div className=" shadow-custom w-full text-right bg-main rounded-main_sub w-[350px] h-[70px] pr-8 flex justify-end items-center">
+        <div className=" shadow-custom w-full text-right bg-main rounded-main_sub w-[350px] h-[70px] pr-8 flex-col justify-end items-center">
+            <div className="text-[#b5b5b5] text-lg min-h-7">
+                { subValue != '0' && subValue }
+            </div>
             <h1 className="text-[#fff] text-3xl">
                 {value}
             </h1>

@@ -2,26 +2,16 @@ import { useState, useEffect } from "react";
 import { CalculatorDisplay } from "./CalculatorDisplay";
 import { CalculatorKey } from "./CalculatorKey";
 
-const CalculatorOperations = {
-    '/': (prevValue: number, nextValue: number) => prevValue / nextValue,
-    '*': (prevValue: number, nextValue: number) => prevValue * nextValue,
-    '+': (prevValue: number, nextValue: number) => prevValue + nextValue,
-    '-': (prevValue: number, nextValue: number) => prevValue - nextValue,
-    '%': (prevValue: number, nextValue: number) => prevValue % nextValue,  // 나머지 연산
-    '^': (prevValue: number, nextValue: number) => Math.pow(prevValue, nextValue),
-    '=': (nextValue: number) => nextValue
-}
-
 export const Calculator = () => {
     const [displayValue, setDisplayValue] = useState('0');
+    const [subDisplayValue, setSubDisplayValue] = useState('');
     const [operator, setOperator] = useState<null | '/' | '*' | '+' | '-' | '=' | '%' | '^'>(null);
+    const [prevOperator, setPrevOperator] = useState<null | '/' | '*' | '+' | '-' | '=' | '%' | '^'>(null);
     const [value, setValue] = useState<null | number>(null);
+    const [prevValue, setPrevValue] = useState<null | number>(null);
     const [isBeforeOperand, setIsBeforeOperand] = useState(false);
 
     useEffect(() => {
-        console.log(displayValue, " :  displayValue");
-        console.log(value, " :  value");
-        console.log(displayValue, " :  displayValue");
 
         const handleKeyDown = (event: KeyboardEvent) => {
             const { key } = event;
@@ -43,10 +33,11 @@ export const Calculator = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [displayValue, operator, value, isBeforeOperand]);
+    }, [displayValue, subDisplayValue, operator, value, isBeforeOperand]);
 
     const clearDisplay = () => {
         setDisplayValue(('0'));
+        setSubDisplayValue(('0'));
         setValue(null);
         setIsBeforeOperand(false);
     };
@@ -59,26 +50,44 @@ export const Calculator = () => {
     };
 
     const inputDigit = (digit: number) => {
+
         if (isBeforeOperand) {
             setDisplayValue(String(digit));
+            setSubDisplayValue(subDisplayValue);
             setIsBeforeOperand(false);
         } else {
             setDisplayValue(displayValue === '0' ? String(digit) : displayValue + digit);
+            // setSubDisplayValue(displayValue === '0' ? String(digit) : String(subDisplayValue + digit));
         }
     };
 
     const performOperation = (nextOperator: '/' | '*' | '+' | '-' | '=' | '%' | '^') => {
         const inputValue = parseFloat(displayValue);
+        
+        
 
         if (value == null) {
             setValue(inputValue);
+            setPrevValue(inputValue);
+            setPrevOperator(nextOperator);
+            setSubDisplayValue(inputValue + " " + nextOperator)
+
         } else if (operator) {
             const currentValue = value || 0;
             const newValue = CalculatorOperations[operator](currentValue, inputValue);
-            if (newValue === 0) {
+            
+            if (newValue == 0) {
                 setValue(null)
+                setSubDisplayValue('0')
+            } else if (nextOperator == "=") {
+                console.log(prevValue + " " + prevOperator + " " + inputValue + " " + nextOperator);
+                
+                setSubDisplayValue(prevValue + " " + prevOperator + " " + inputValue + " " + nextOperator);
+                setPrevValue(newValue);
+                setValue(newValue);
             } else {
                 setValue(newValue);
+                setSubDisplayValue(newValue + " " + nextOperator)
             }
             setDisplayValue(String(newValue));
         }
@@ -86,10 +95,23 @@ export const Calculator = () => {
         setOperator(nextOperator);
     };
 
+    useEffect(() => {
+    }, [subDisplayValue]);
+
+    const CalculatorOperations = {
+        '/': (prevValue: number, nextValue: number) => prevValue / nextValue,
+        '*': (prevValue: number, nextValue: number) => prevValue * nextValue,
+        '+': (prevValue: number, nextValue: number) => prevValue + nextValue,
+        '-': (prevValue: number, nextValue: number) => prevValue - nextValue,
+        '%': (prevValue: number, nextValue: number) => prevValue % nextValue,
+        '^': (prevValue: number, nextValue: number) => Math.pow(prevValue, nextValue),
+        '=': (nextValue: number) => nextValue
+    };
+
     return (
         <>
             <div className="flex flex-col p-[25px] items-center bg-ccc w-[400px] h-[367px] shadow-light-gray-blue-100 shadow-lg">
-                <CalculatorDisplay value={displayValue} shadow="shadow-custom" />
+                <CalculatorDisplay value={displayValue} subValue={subDisplayValue} />
                 <div className="mt-[20px]">
                     <div className="flex justify-between gap-x-5">
                         <div id="key" className="grid grid-cols-3 gap-x-3 gap-y-3">
