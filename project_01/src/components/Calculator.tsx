@@ -89,7 +89,7 @@ export const Calculator = () => {
         try {
             // 0으로 나누기나 나머지 구하기를 시도할 때
             if ((operator === '/' || operator === '%') && inputValue === 0) {
-                throw new Error("Cannot divide by zero");
+                throw new Error("Cannot divide by zero.");
             }
 
 
