@@ -140,7 +140,7 @@ export const Calculator = () => {
 
     return (
         <>
-            <div className='flex flex-col p-[25px] items-center bg-ccc w-[400px] h-[367px] shadow-light-gray-blue-100 shadow-lg'>
+            <div className='flex flex-col p-[25px] items-center bg-background w-[400px] h-[367px] shadow-light-gray-blue-100 shadow-lg'>
                 <CalculatorDisplay value={displayValue} subValue={subDisplayValue} />
                 <div className='mt-[20px]'>
                     <div className='flex justify-between gap-x-5'>
@@ -159,14 +159,14 @@ export const Calculator = () => {
                             <CalculatorKey bgc='bg-sub' radius='rounded-main_sub' shadow='shadow-custom' onPress={() => clearDisplay()} label='' width={'w-[65px]'} font={'text-[24px]'} />
                         </div>
                         <div id='key' className='grid grid-cols-2 gap-x-3 gap-y-3'>
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('*')} label='×' width={'w-[45px]'} font={'text-[32px]'} />
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('/')} label='÷' width={'w-[45px]'} font={'text-[32px]'} />
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('+')} label='+' width={'w-[45px]'} font={'text-[32px]'} />
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('-')} label='-' width={'w-[45px]'} font={'text-[32px]'} />
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('%')} label='%' width={'w-[45px]'} font={'text-[24px]'} />
-                            <CalculatorKey bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('^')} label='^' width={'w-[45px]'} font={'text-[24px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('*')} label='×' width={'w-[45px]'} font={'text-[32px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('/')} label='÷' width={'w-[45px]'} font={'text-[32px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('+')} label='+' width={'w-[45px]'} font={'text-[32px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('-')} label='-' width={'w-[45px]'} font={'text-[32px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('%')} label='%' width={'w-[45px]'} font={'text-[24px]'} />
+                            <CalculatorKey bgc='bg-option' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('^')} label='^' width={'w-[45px]'} font={'text-[24px]'} />
                             <div className='col-span-2'>
-                                <CalculatorKey bgc='bg-bbb' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
+                                <CalculatorKey bgc='bg-equal' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
                             </div>
                         </div>
                     </div>

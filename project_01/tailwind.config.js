@@ -8,6 +8,7 @@ export default {
     extend: {
       boxShadow: {
         custom: '0 4px 4px rgba(0, 0, 0, 0.25)',
+        
       },
       borderRadius: {
         main_sub: '20px',
@@ -18,9 +19,10 @@ export default {
       colors: {
         main: '#3A3F77',
         sub: '#404258',
-        aaa: '#F49D1A',
-        bbb: '#B2B2B2',
-        ccc: '#242530'
+        option: '#F49D1A',
+        equal: '#B2B2B2',
+        background: '#242530'
+
       },
     },
   },
