@@ -86,7 +86,7 @@ export const Calculator = () => {
         try {
             // 0으로 나누기나 나머지 구하기 시도 시 에러 처리
             if ((operator === '/' || operator === '%') && inputValue === 0) {
-                throw new Error("Cannot divide by zero");
+                throw new Error("Cannot divide by zero.");
             }
 
             if (value == null) {
@@ -164,7 +164,7 @@ export const Calculator = () => {
                             <Button bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('%')} label='%' width={'w-[45px]'} font={'text-[24px]'} />
                             <Button bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('^')} label='^' width={'w-[45px]'} font={'text-[24px]'} />
                             <div className='col-span-2'>
-                                <Button bgc='bg-bbb' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
+                                <CalculatorKey bgc='bg-bbb' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
                             </div>
                         </div>
                     </div>
