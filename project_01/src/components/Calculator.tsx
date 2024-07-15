@@ -164,7 +164,7 @@ export const Calculator = () => {
                             <Button bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('%')} label='%' width={'w-[45px]'} font={'text-[24px]'} />
                             <Button bgc='bg-aaa' radius='rounded-aaa' shadow='shadow-custom' onPress={() => performOperation('^')} label='^' width={'w-[45px]'} font={'text-[24px]'} />
                             <div className='col-span-2'>
-                                <CalculatorKey bgc='bg-bbb' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
+                                <Button bgc='bg-bbb' isHighlighted={true} radius='rounded-bbb' shadow='shadow-custom' onPress={() => performOperation('=')} label='=' width={'w-[100%]'} font={'text-[28px]'} />
                             </div>
                         </div>
                     </div>
