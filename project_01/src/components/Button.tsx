@@ -1,4 +1,4 @@
-// CalculatorKey 컴포넌트의 Props 인터페이스 정의
+// Button 컴포넌트의 Props 인터페이스 정의
 interface Props {
     onPress: () => void;
     bgc: string;
@@ -10,8 +10,8 @@ interface Props {
     isHighlighted?: boolean;
 }
 
-// CalculatorKey 컴포넌트
-export const CalculatorKey = ({ onPress, bgc, font, radius, width, shadow, label, isHighlighted }: Props) => {
+// Button 컴포넌트
+export const Button = ({ onPress, bgc, font, radius, width, shadow, label, isHighlighted }: Props) => {
     return (
         <button onClick={onPress} className={`${bgc} ${radius} ${width} ${shadow} h-[45px] flex justify-center items-center`}>
             {
